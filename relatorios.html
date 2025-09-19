@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Relatórios - Gestão de Serviços</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>📊 Relatórios Mensais</h1>
+            <div class="month-selector">
+                <select id="monthSelect">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+        </header>
+
+        <div id="loadingReports" class="loading-container">
+            <div class="spinner"></div>
+            <p>Calculando relatórios...</p>
+        </div>
+
+        <div id="reportsContainer" class="reports-container">
+            <div class="report-card">
+                <div class="report-header">
+                    <h2>💰 Receita Bruta</h2>
+                </div>
+                <div class="report-value" id="grossRevenue">R$ 0,00</div>
+                <div class="report-detail" id="paidServices">0 serviços pagos</div>
+            </div>
+
+            <div class="report-card">
+                <div class="report-header">
+                    <h2>🔧 Custo das Peças</h2>
+                </div>
+                <div class="report-value" id="partsCost">R$ 0,00</div>
+                <div class="report-detail" id="totalParts">0 peças utilizadas</div>
+            </div>
+
+            <div class="report-card highlight">
+                <div class="report-header">
+                    <h2>📈 Lucro Líquido</h2>
+                </div>
+                <div class="report-value" id="netProfit">R$ 0,00</div>
+                <div class="report-detail" id="profitMargin">0% de margem</div>
+            </div>
+
+            <div class="report-card">
+                <div class="report-header">
+                    <h2>📋 Resumo Geral</h2>
+                </div>
+                <div class="report-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Total de Clientes:</span>
+                        <span class="summary-value" id="totalClients">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Serviços Pagos:</span>
+                        <span class="summary-value" id="paidCount">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Serviços Pendentes:</span>
+                        <span class="summary-value" id="unpaidCount">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Valor Pendente:</span>
+                        <span class="summary-value" id="unpaidValue">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button id="exportData" class="btn-secondary">
+                📤 Exportar Dados (JSON)
+            </button>
+            <button id="closeMonth" class="btn-danger">
+                🔒 Fechar Mês
+            </button>
+        </div>
+
+        <div id="noData" class="no-data" style="display: none;">
+            <p>📭 Nenhum dado encontrado para este mês.</p>
+            <a href="index.html" class="btn-primary">➕ Cadastrar Primeiro Cliente</a>
+        </div>
+    </div>
+
+    <!-- Close Month Confirmation Modal -->
+    <div id="closeMonthModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔒 Fechar Mês</h2>
+            </div>
+            <div class="warning-message">
+                <p>⚠️ <strong>Atenção!</strong> Esta ação irá:</p>
+                <ul>
+                    <li>Exportar todos os dados do mês atual</li>
+                    <li>Arquivar os registros</li>
+                    <li>Limpar os dados para o novo mês</li>
+                </ul>
+                <p>Esta ação <strong>não pode ser desfeita</strong>. Tem certeza?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelCloseMonth">Cancelar</button>
+                <button class="btn-danger" id="confirmCloseMonth">🔒 Confirmar Fechamento</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">Cadastro</span>
+        </a>
+        <a href="clientes.html" class="nav-item">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">Clientes</span>
+        </a>
+        <a href="relatorios.html" class="nav-item active">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Relatórios</span>
+        </a>
+    </nav>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>

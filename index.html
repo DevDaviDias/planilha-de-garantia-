@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Cadastro de Cliente - Gestão de Serviços</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>📝 Cadastro de Cliente</h1>
+        </header>
+
+        <form id="clientForm" class="form-container">
+            <div class="form-group">
+                <label for="clientName">Nome do Cliente *</label>
+                <input type="text" id="clientName" name="clientName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="serviceDate">Data do Serviço *</label>
+                <input type="date" id="serviceDate" name="serviceDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="warranty">Garantia (meses) *</label>
+                <input type="number" id="warranty" name="warranty" min="0" max="60" required>
+            </div>
+
+            <div class="form-group">
+                <label for="serviceValue">Valor Cobrado (R$) *</label>
+                <input type="number" id="serviceValue" name="serviceValue" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="paymentStatus">Status de Pagamento *</label>
+                <select id="paymentStatus" name="paymentStatus" required>
+                    <option value="">Selecione...</option>
+                    <option value="pago">Pago</option>
+                    <option value="nao-pago">Não Pago</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="parts">Peças Utilizadas</label>
+                <div id="partsContainer">
+                    <div class="part-item">
+                        <input type="text" placeholder="Nome da peça" class="part-name">
+                        <input type="number" placeholder="Custo (R$)" class="part-cost" step="0.01" min="0">
+                        <button type="button" class="btn-remove-part">❌</button>
+                    </div>
+                </div>
+                <button type="button" id="addPart" class="btn-secondary">➕ Adicionar Peça</button>
+            </div>
+
+            <div class="form-group">
+                <label for="observations">Observações</label>
+                <textarea id="observations" name="observations" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="servicePhoto">Foto do Serviço</label>
+                <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" capture="environment">
+                <div id="photoPreview" class="photo-preview"></div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-primary">
+                <span id="submitText">💾 Salvar Cliente</span>
+                <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+            </button>
+        </form>
+
+        <div id="successMessage" class="success-message" style="display: none;">
+            ✅ Cliente cadastrado com sucesso!
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;">
+            ❌ Erro ao cadastrar cliente. Tente novamente.
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">Cadastro</span>
+        </a>
+        <a href="clientes.html" class="nav-item">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">Clientes</span>
+        </a>
+        <a href="relatorios.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Relatórios</span>
+        </a>
+    </nav>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>

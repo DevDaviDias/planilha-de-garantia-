@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Clientes - Gestão de Serviços</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>👥 Lista de Clientes</h1>
+            <a href="relatorios.html" class="btn-reports">📊 Relatórios</a>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar cliente..." class="search-input">
+        </div>
+
+        <div id="loadingClients" class="loading-container">
+            <div class="spinner"></div>
+            <p>Carregando clientes...</p>
+        </div>
+
+        <div id="clientsContainer" class="clients-grid">
+            <!-- Client cards will be dynamically inserted here -->
+        </div>
+
+        <div id="noClients" class="no-data" style="display: none;">
+            <p>📭 Nenhum cliente cadastrado ainda.</p>
+            <a href="index.html" class="btn-primary">➕ Cadastrar Primeiro Cliente</a>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ Editar Cliente</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="editForm" class="form-container">
+                <input type="hidden" id="editClientId">
+                
+                <div class="form-group">
+                    <label for="editClientName">Nome do Cliente *</label>
+                    <input type="text" id="editClientName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editServiceDate">Data do Serviço *</label>
+                    <input type="date" id="editServiceDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editWarranty">Garantia (meses) *</label>
+                    <input type="number" id="editWarranty" min="0" max="60" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editServiceValue">Valor Cobrado (R$) *</label>
+                    <input type="number" id="editServiceValue" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPaymentStatus">Status de Pagamento *</label>
+                    <select id="editPaymentStatus" required>
+                        <option value="pago">Pago</option>
+                        <option value="nao-pago">Não Pago</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="editObservations">Observações</label>
+                    <textarea id="editObservations" rows="3"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary modal-cancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">💾 Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🗑️ Confirmar Exclusão</h2>
+            </div>
+            <p>Tem certeza que deseja excluir este cliente? Esta ação não pode ser desfeita.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelDelete">Cancelar</button>
+                <button class="btn-danger" id="confirmDelete">🗑️ Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">Cadastro</span>
+        </a>
+        <a href="clientes.html" class="nav-item active">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">Clientes</span>
+        </a>
+        <a href="relatorios.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Relatórios</span>
+        </a>
+    </nav>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
